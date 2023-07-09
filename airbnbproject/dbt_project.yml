@@ -19,6 +19,7 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
@@ -40,3 +41,21 @@ models:
     # # Config indicated by + and applies to all files under models/example/
     # example:
     #   +materialized: view
+
+# You can also use the full resource path (including the project name, and subdirectories) to configure an individual snapshot from your dbt_project.yml file.
+
+# For a project named airbnbproject, 
+# with a snapshot file within the snapshots/ directory,
+# where the snapshot is named raw_hosts_scd_2, 
+# this would look like:
+snapshots:
+  airbnbproject:
+    raw_hosts_scd_2:
+      +target_schema: airbnb
+      +target_schema: snapshots
+      +unique_key: id
+      +strategy: check
+      +check_cols: ['updated_at', 'is_superhost']
+      +invalidate_hard_deletes: true
+
+# snapshot for listing is defined at the query level 
