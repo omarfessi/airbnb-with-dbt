@@ -1,0 +1,12 @@
+version: 2
+exposures:
+  - name: Executive Dashboard
+    type: dashboard
+    maturity: low
+    url: https://245a49a2.us1a.app.preset.io/superset/dashboard/p/jA9Oa9060gN/
+    description: Executive Dashboard about Airbnb listings and hosts
+    depends_on:
+      - ref('dim_listings_with_hosts_cleansed')
+      - ref('full_moon_reviews')
+    owner:
+      name: Omar Fessi
