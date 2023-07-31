@@ -50,7 +50,12 @@ models:
     columns:
       - name: price
         tests:  
-         - dbt_expectations.expect_column_quantile_values_to_be_between:
+          - dbt_expectations.expect_column_quantile_values_to_be_between:
               quantile: .99
               min_value: 80 
               max_value: 349 
+          - dbt_expectations.expect_column_max_to_be_between:
+              max_value: 5000
+              config:
+                severity: warn
+
